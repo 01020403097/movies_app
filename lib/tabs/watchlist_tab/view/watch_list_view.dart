@@ -12,13 +12,16 @@ class WatchListView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              "Watch List",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 30,
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(
+                "Watch List",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                ),
+                // textAlign: TextAlign.start,
               ),
-              // textAlign: TextAlign.start,
             ),
             Expanded(
                 child: ListView.builder(
