@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/search/search_item_widget.dart';
+
+import '../../search_tab/view/search_item_widget.dart';
 
 class WatchListView extends StatelessWidget {
   const WatchListView({super.key});

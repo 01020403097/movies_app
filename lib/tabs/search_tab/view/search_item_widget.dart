@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter/src/rendering/object.dart';
 
 class SearchItemWidget extends StatelessWidget {
   const SearchItemWidget({super.key});
