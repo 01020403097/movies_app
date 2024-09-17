@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/shared/style/app_theme.dart';
-import 'package:movies_app/tabs/home_tab/view/movies/movie_item.dart';
-import 'package:movies_app/tabs/home_tab/view/movies/movie_modal.dart';
 
-class NewMovies extends StatelessWidget {
+import '../../../../shared/style/app_theme.dart';
+import '../movies/movie_modal.dart';
+import 'like_movies_items.dart';
+
+class MoreLikeThis extends StatelessWidget {
+  MoreLikeThis({super.key});
+
   final List<MovieModal> movieList = [
     MovieModal(
       image: 'assets/images/movie.png',
@@ -49,23 +52,23 @@ class NewMovies extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(top: 17, start: 17, bottom: 17),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
         children: [
-          Text('New Release', style: Theme.of(context).textTheme.titleMedium),
+          Text('More Like This',
+              style: Theme.of(context).textTheme.titleMedium),
           const SizedBox(height: 10),
           Expanded(
             child: GridView.builder(
               scrollDirection: Axis.horizontal,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                mainAxisSpacing: 17,
-                childAspectRatio: 1.2,
+                mainAxisSpacing: 10,
+                childAspectRatio: 2, // Adjust aspect ratio as needed
               ),
               itemCount: movieList.length,
               itemBuilder: (context, index) {
-                return MovieItem(
+                return LikeMoviesItems(
                   movie: movieList[index],
-                  showDetails: false, // Only show image
+                  showDetails: true,
                 );
               },
             ),

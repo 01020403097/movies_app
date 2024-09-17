@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/search/search_item_widget.dart';
+import 'package:movies_app/tabs/search_tab/view/search_item_widget.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
