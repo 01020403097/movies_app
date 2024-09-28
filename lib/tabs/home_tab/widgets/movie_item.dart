@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/shared/style/app_theme.dart';
-import 'package:movies_app/tabs/home_tab/view/movies/movie_modal.dart';
 
 class MovieItem extends StatefulWidget {
-  final MovieModal movie;
+  final String image; // This should be the URL of the image
+  final String? rating;
+  final String? title;
   final bool showDetails;
+  final String? releaseDate;
+  final String? genreIds;
 
   MovieItem({
-    required this.movie,
+    required this.image,
+    this.rating,
+    this.title,
+    this.releaseDate,
+    this.genreIds,
     this.showDetails = false,
   });
 
@@ -36,7 +43,7 @@ class _MovieItemState extends State<MovieItem> {
             blurRadius: 3,
             spreadRadius: 0,
             offset: Offset(0, 3),
-          )
+          ),
         ],
       ),
       child: Column(
@@ -53,10 +60,13 @@ class _MovieItemState extends State<MovieItem> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
                   ),
-                  child: Image.asset(
-                    widget.movie.image,
+                  child: Image.network( // Use Image.network for URL images
+                    widget.image,
                     fit: BoxFit.cover,
                     width: double.infinity,
+                    errorBuilder: (context, error, stackTrace) {
+                      return const Center(child: Text('Image not available')); // Handle error gracefully
+                    },
                   ),
                 ),
               ),
@@ -89,36 +99,47 @@ class _MovieItemState extends State<MovieItem> {
             ],
           ),
           if (widget.showDetails) ...[
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      Image.asset('assets/images/star.png'),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Text(
-                        widget.movie.rating ?? '',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    widget.movie.title ?? '',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    widget.movie.duration ?? '',
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
+            Flexible(
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Image.asset('assets/images/star.png'),
+                        const SizedBox(width: 5),
+                        Text(
+                          widget.rating ?? '',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      widget.title ?? '',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        Text(
+                          widget.releaseDate ?? '',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                        const SizedBox(width: 5,),
+                        Text(
+                          'PG-${widget.genreIds ?? ''}',
+                          style: Theme.of(context).textTheme.bodySmall,
+                        ),
+                      ],
+                    ),
+
+                  ],
+                ),
               ),
-            )
+            ),
           ],
         ],
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/tabs/home_tab/view/movies/new_movies.dart';
-import 'package:movies_app/tabs/home_tab/view/movies/recommended_movies.dart';
+import 'package:movies_app/tabs/home_tab/top_rated/top_rated_movies.dart';
+import '../popular/popular_movies.dart';
+import '../upcoming/upcoming_movies.dart';
 import 'movies/movie_carousel.dart';
 
 class HomeTab extends StatelessWidget {
@@ -14,11 +15,11 @@ class HomeTab extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              MovieCarousel(),
+              PopularMovies(),
               const SizedBox(height: 20,),
-              SizedBox(height: 187, child: NewMovies()),
+              SizedBox(height: 187, child: UpcomingMovies()),
               const SizedBox(height: 20,),
-              SizedBox(height: 246, child: RecommendedMovies()),
+              SizedBox(height: 246, child: TopRatedMovies()),
               // const SizedBox(height: 20,),
             ],
           ),

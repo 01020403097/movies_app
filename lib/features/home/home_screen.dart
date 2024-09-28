@@ -3,8 +3,8 @@ import 'package:movies_app/shared/style/app_theme.dart';
 import 'package:movies_app/tabs/browes_tab/view/browse_tab.dart';
 import 'package:movies_app/tabs/home_tab/view/home_tab.dart';
 
-import '../../../tabs/search_tab/view/search_view.dart';
-import '../../../tabs/watchlist_tab/view/watch_list_view.dart';
+import '../../tabs/search_tab/view/search_view.dart';
+import '../../tabs/watchlist_tab/view/watch_list_view.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'homeScreen';
@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: tabs[currentTabIndex],
       bottomNavigationBar: BottomAppBar(
-        shape:  CircularNotchedRectangle(),
+        shape:  const CircularNotchedRectangle(),
         notchMargin: height*0.01,
         padding: EdgeInsets.zero,
         clipBehavior: Clip.antiAliasWithSaveLayer,
