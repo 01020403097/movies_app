@@ -9,28 +9,24 @@ class RecommendedMovies extends StatelessWidget {
       image: 'assets/images/movie.png',
       title: 'Deadpool 2',
       rating: '7.7',
-      year: '2019',
       duration: '2018  R  1h 59m',
     ),
     MovieModal(
       image: 'assets/images/movie.png',
       title: 'Deadpool 2',
       rating: '7.7',
-      year: '2019',
       duration: '2018  R  1h 59m',
     ),
     MovieModal(
       image: 'assets/images/movie.png',
       title: 'Deadpool 2',
       rating: '7.7',
-      year: '2019',
       duration: '2018  R  1h 59m',
     ),
     MovieModal(
       image: 'assets/images/movie.png',
       title: 'Deadpool 2',
       rating: '7.7',
-      year: '2019',
       duration: '2018  R  1h 59m',
     ),
   ];

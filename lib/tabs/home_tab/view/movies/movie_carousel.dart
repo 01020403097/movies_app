@@ -1,8 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app/shared/style/app_theme.dart';
-import 'package:movies_app/tabs/home_tab/view/movies/movie_modal.dart';
-import 'package:movies_app/tabs/home_tab/view/movies_details/movies_details.dart';
 
 class MovieCarousel extends StatefulWidget {
   @override
@@ -18,7 +16,6 @@ class _MovieCarouselState extends State<MovieCarousel> {
       'rating': 'PG-13',
       'duration': '2h 7m',
     },
-    // Add more movies here if needed
   ];
 
   bool isBookmarked = true;
@@ -41,11 +38,7 @@ class _MovieCarouselState extends State<MovieCarousel> {
         autoPlayAnimationDuration: const Duration(milliseconds: 1500),
         autoPlayCurve: Curves.fastOutSlowIn,
       ),
-      items: movieList.asMap().entries.map((entry) {
-        int index = entry.key;
-        Map<String, String> movie = entry.value;
-        MovieModal movieModal = MovieModal.fromMap(movie);
-
+      items: movieList.map((movie) {
         return Builder(
           builder: (BuildContext context) {
             return Stack(
@@ -66,16 +59,7 @@ class _MovieCarouselState extends State<MovieCarousel> {
                       Icons.play_circle_filled,
                       color: Colors.white,
                     ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MoviesDetails(
-                            movieModal: movieModal,
-                          ),
-                        ),
-                      );
-                    },
+                    onPressed: () {},
                   ),
                 ),
                 PositionedDirectional(
@@ -138,11 +122,11 @@ class _MovieCarouselState extends State<MovieCarousel> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              movie['title']!,
-                              style: Theme.of(context).textTheme.bodyLarge,
+                            Text(movie['title']!,
+                                style: Theme.of(context).textTheme.bodyLarge),
+                            const SizedBox(
+                              height: 5,
                             ),
-                            const SizedBox(height: 5),
                             Text(
                               '${movie['year']} • ${movie['rating']} • ${movie['duration']}',
                               style: Theme.of(context).textTheme.bodySmall,

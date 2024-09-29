@@ -13,7 +13,6 @@ class AppTheme {
   static Color lightGray = const Color(0xFFB5B4B4);
 
   static ThemeData themeData = ThemeData(
-    appBarTheme: AppBarTheme(color: scaffoldBackGround),
     primaryColor: primary,
     cardColor: gray,
     scaffoldBackgroundColor: scaffoldBackGround,
