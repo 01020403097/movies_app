@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:movies_app/shared/style/app_theme.dart';
 import 'package:movies_app/tabs/home_tab/popular/cubit/popular_movies_states.dart';
 import 'package:movies_app/tabs/home_tab/popular/cubit/popular_movies_view_model.dart';
 import 'package:movies_app/tabs/home_tab/view/movies/movie_modal.dart'; // Import your MovieModal
-import '../view/movies_details/movies_details.dart'; // Import your MoviesDetails
+
+import '../view/movies_details/view/movies_details.dart'; // Import your MoviesDetails
 
 class PopularMovies extends StatefulWidget {
   @override
@@ -64,16 +65,17 @@ class _PopularMoviesState extends State<PopularMovies> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        // Navigate to the MoviesDetails page and pass the movie details
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => MoviesDetails(
                               movieModal: MovieModal(
                                 title: movie?.title ?? '',
                                 year: movie?.releaseDate?.split('-')[0] ?? '',
-                                rating: 'PG-${movie?.genreIds?.join(', ') ?? ''}', // Adjust according to your model
-                                duration: '120 min', // Adjust according to your model
-                                image: 'https://image.tmdb.org/t/p/w500${movie?.posterPath}', // Adjust according to your model
+                                rating:
+                                    'PG-${movie?.genreIds?.join(', ') ?? ''}',
+                                duration: '120 min',
+                                image:
+                                    'https://image.tmdb.org/t/p/w500${movie?.posterPath}',
                               ),
                             ),
                           ),

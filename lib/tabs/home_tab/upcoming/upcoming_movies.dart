@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:movies_app/shared/style/app_theme.dart';
 import 'package:movies_app/tabs/home_tab/upcoming/cubit/upcoming_movies_states.dart';
 import 'package:movies_app/tabs/home_tab/upcoming/cubit/upcoming_movies_view_model.dart';
-import 'package:get_it/get_it.dart';
+
 import '../widgets/movie_item.dart';
 
 class UpcomingMovies extends StatelessWidget {
@@ -14,8 +15,7 @@ class UpcomingMovies extends StatelessWidget {
     final UpcomingMoviesViewModel viewModel =
     GetIt.I<UpcomingMoviesViewModel>();
 
-    // Call the method to fetch movies on build
-    viewModel.getAllUpcomingMovies(); // <-- Call the method here
+    viewModel.getAllUpcomingMovies();
 
     return BlocBuilder<UpcomingMoviesViewModel, UpcomingMoviesStates>(
       bloc: viewModel,

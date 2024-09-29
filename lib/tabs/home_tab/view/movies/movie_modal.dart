@@ -13,7 +13,6 @@ class MovieModal {
     required this.duration,
   });
 
-  // Factory method to create a MovieModal from a Map
   factory MovieModal.fromMap(Map<String, String> map) {
     return MovieModal(
       image: map['image']!,

@@ -4,8 +4,12 @@ class ApiConstants {
   static const String upcomingUrl = '/3/movie/upcoming';
   static const String topRatedUrl = '/3/movie/top_rated';
   static const String popularUrl = '/3/movie/popular';
+  static const String similarMoviesUrl = '/3/movie/similar';
 
   static String get upcomingMoviesEndpoint => '$baseUrl$upcomingUrl?api_key=$apiKey&language=en-US';
   static String get topRatedMoviesEndpoint => '$baseUrl$topRatedUrl?api_key=$apiKey&language=en-US';
   static String get popularMoviesEndpoint => '$baseUrl$popularUrl?api_key=$apiKey&language=en-US';
+
+  static String get similarMoviesEndpoint =>
+      '$baseUrl$similarMoviesUrl?api_key=$apiKey&language=en-US';
 }

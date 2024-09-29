@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/shared/style/app_theme.dart';
 import 'package:movies_app/tabs/home_tab/view/movies/movie_modal.dart';
-
-import 'more_like_this.dart';
+import 'package:movies_app/tabs/home_tab/view/movies_details/view/like_movies_items.dart';
 
 class MoviesDetails extends StatefulWidget {
   final MovieModal movieModal;
@@ -51,7 +50,8 @@ class _MoviesDetailsState extends State<MoviesDetails> {
               height: MediaQuery.of(context).size.height * 0.35,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(widget.movieModal.image),
+                  image: NetworkImage(widget.movieModal.image),
+                  // Load from network
                   fit: BoxFit.cover,
                 ),
               ),
@@ -62,7 +62,9 @@ class _MoviesDetailsState extends State<MoviesDetails> {
                     Icons.play_circle_filled,
                     color: Colors.white,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    // Add functionality for playing the movie
+                  },
                 ),
               ),
             ),
@@ -99,8 +101,9 @@ class _MoviesDetailsState extends State<MoviesDetails> {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(4),
-                          child: Image.asset(
-                            'assets/images/dora-2.png',
+                          child: Image.network(
+                            // Load poster from network
+                            widget.movieModal.image,
                             height: MediaQuery.of(context).size.height * 0.25,
                             width: MediaQuery.of(context).size.width * 0.27,
                             fit: BoxFit.cover,
@@ -114,9 +117,7 @@ class _MoviesDetailsState extends State<MoviesDetails> {
                               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                               backgroundColor: Colors.transparent,
                             ),
-                            onPressed: () {
-                              _toggleBookmark();
-                            },
+                            onPressed: _toggleBookmark,
                             child: Stack(
                               alignment: Alignment.center,
                               children: [
@@ -146,96 +147,26 @@ class _MoviesDetailsState extends State<MoviesDetails> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // Action Buttons
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
-                              padding: const EdgeInsetsDirectional.symmetric(
-                                  vertical: 5, horizontal: 10),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: AppTheme.gray),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: GestureDetector(
-                                onTap: () {}, // Add your action here
-                                child: Text('Action ',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                            fontSize: 10,
-                                            color: AppTheme.lightGray)),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Container(
-                              padding: const EdgeInsetsDirectional.symmetric(
-                                  vertical: 5, horizontal: 10),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: AppTheme.gray),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: GestureDetector(
-                                onTap: () {}, // Add your action here
-                                child: Text('Action ',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                            fontSize: 10,
-                                            color: AppTheme.lightGray)),
-                              ),
-                            ),
-                            const SizedBox(
-                              width: 15,
-                            ),
-                            Container(
-                              padding: const EdgeInsetsDirectional.symmetric(
-                                  vertical: 5, horizontal: 10),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: AppTheme.gray),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: GestureDetector(
-                                onTap: () {}, // Add your action here
-                                child: Text('Action ',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                            fontSize: 10,
-                                            color: AppTheme.lightGray)),
-                              ),
-                            ),
+                            _buildActionButton(context, 'Action 1'),
+                            const SizedBox(width: 15),
+                            _buildActionButton(context, 'Action 2'),
+                            const SizedBox(width: 15),
+                            _buildActionButton(context, 'Action 3'),
                           ],
                         ),
                         const SizedBox(height: 8),
+                        // More Actions
                         Row(
                           children: [
-                            Container(
-                              padding: const EdgeInsetsDirectional.symmetric(
-                                  vertical: 5, horizontal: 10),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: AppTheme.gray),
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: GestureDetector(
-                                onTap: () {}, // Add your action here
-                                child: Text('Action ',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleMedium!
-                                        .copyWith(
-                                            fontSize: 10,
-                                            color: AppTheme.lightGray)),
-                              ),
-                            ),
+                            _buildActionButton(context, 'Action 4'),
                           ],
                         ),
                         SizedBox(
-                            height: MediaQuery.sizeOf(context).height * 0.016),
+                            height: MediaQuery.of(context).size.height * 0.016),
                         Text(
                           'Having spent most of her life exploring the jungle, nothing could prepare Dora for her most dangerous adventure yet — high school.',
                           style: Theme.of(context)
@@ -246,12 +177,13 @@ class _MoviesDetailsState extends State<MoviesDetails> {
                         ),
                         const SizedBox(height: 16),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: () {}, // Add functionality for rating
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               IconButton(
                                 onPressed: () {},
+                                // Add functionality for star rating
                                 icon: Icon(
                                   Icons.star,
                                   color: AppTheme.orange,
@@ -276,10 +208,33 @@ class _MoviesDetailsState extends State<MoviesDetails> {
             ),
             const SizedBox(height: 5),
             SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.3,
-              child: MoreLikeThis(),
+              height: MediaQuery.of(context).size.height * 0.3,
+              child: LikeMoviesItems(), // Ensure MoreLikeThis is implemented
             ),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildActionButton(BuildContext context, String label) {
+    return Container(
+      padding:
+          const EdgeInsetsDirectional.symmetric(vertical: 5, horizontal: 10),
+      decoration: BoxDecoration(
+        border: Border.all(color: AppTheme.gray),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: GestureDetector(
+        onTap: () {
+          // Define action for the button
+        },
+        child: Text(
+          label,
+          style: Theme.of(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(fontSize: 10, color: AppTheme.lightGray),
         ),
       ),
     );

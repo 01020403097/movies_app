@@ -1,8 +1,11 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:movies_app/data/model/popular_movies_dto.dart';
 import 'package:movies_app/data/model/upcoming_movies_dto.dart';
+
 import '../data/model/top_rated_movies_dto.dart';
+import '../tabs/home_tab/view/movies_details/data/model/similar_movies_dto.dart';
 import 'api_constants.dart';
 
 class ApiManager {
@@ -48,6 +51,23 @@ class ApiManager {
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body);
         return PopularMoviesDto.fromJson(data);
+      } else {
+        throw Exception(
+            'Failed to load top rated movies: ${response.statusCode}');
+      }
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  static Future<SimilarMoviesDto> getSimilarMovies() async {
+    final String url = ApiConstants.similarMoviesEndpoint;
+    final response = await http.get(Uri.parse(url));
+
+    try {
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body);
+        return SimilarMoviesDto.fromJson(data);
       } else {
         throw Exception(
             'Failed to load top rated movies: ${response.statusCode}');
