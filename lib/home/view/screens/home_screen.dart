@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/shared/style/app_theme.dart';
 import 'package:movies_app/tabs/browes_tab/view/browse_tab.dart';
 import 'package:movies_app/tabs/home_tab/view/home_tab.dart';
-
-import '../../../tabs/search_tab/view/search_view.dart';
-import '../../../tabs/watchlist_tab/view/watch_list_view.dart';
+import 'package:movies_app/tabs/search_tab/view/search_tab.dart';
+import 'package:movies_app/tabs/watchlist_tab/view/watch_list_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'homeScreen';
@@ -18,9 +17,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int currentTabIndex = 0;
   List<Widget> tabs = [const HomeTab(),
-    const SearchView(),
+    const SearchTab(),
     const BrowseTab(),
-    const WatchListView(),
+    const WatchListTab(),
+
   ];
 
   @override
