@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/shared/style/app_theme.dart';
 
 class SearchItemWidget extends StatelessWidget {
   const SearchItemWidget({super.key});
@@ -7,9 +6,10 @@ class SearchItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 10, top: 20),
-        child: Column(
+      child: Expanded(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, top: 30),
+          child: Column(
             children: [
               Row(
                 children: [
@@ -18,13 +18,14 @@ class SearchItemWidget extends StatelessWidget {
                       Container(
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                          image: const DecorationImage(
-                              image: AssetImage(
+                            // color: Colors.amber,
+                            image: DecorationImage(
+                                image: AssetImage(
                                     "assets/images/watchlistimage.png"),
                                 fit: BoxFit.fill)),
-                      height: 89,
-                      width: 140,
-                      child: Container(
+                        height: 100,
+                        width: 150,
+                        child: Container(
                           child: Image.asset(
                             "assets/images/watchlisttext.png",
                             scale: 3,
@@ -39,47 +40,44 @@ class SearchItemWidget extends StatelessWidget {
                       )
                     ],
                   ),
-                Padding(
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Column(
+                      children: [
                         Text(
                           "Alita Battle Angel",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(fontSize: 15),
-                      ),
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
                         Text(
                           "2019",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(fontSize: 13, color: AppTheme.lightGray),
-                      ),
+                          style: TextStyle(color: Colors.white),
+                        ),
                         Text(
                           "Rosa Salazar, Christoph Waltz",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium!
-                            .copyWith(fontSize: 13, color: AppTheme.lightGray),
-                      ),
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        // Divider(
+                        //   thickness: 2,
+                        //   color: Colors.white,
+                        // ),
                       ],
                     ),
                   )
                 ],
               ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Divider(
-              thickness: 2,
+              SizedBox(
+                height: 25,
+              ),
+              Divider(
+                thickness: 2,
                 color: Color(0xFF707070),
               )
             ],
           ),
         ),
+      ),
     );
   }
 }
