@@ -9,21 +9,21 @@ class WatchListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 8),
+        padding: const EdgeInsets.symmetric(vertical: 25),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
               "Watch List",
-              style: Theme.of(context)
-                  .textTheme
-                  .titleMedium!
-                  .copyWith(fontSize: 22),
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 30,
+              ),
               // textAlign: TextAlign.start,
             ),
             Expanded(
                 child: ListView.builder(
-              itemBuilder: (context, index) => const SearchItemWidget(),
+              itemBuilder: (context, index) => SearchItemWidget(),
               itemCount: 13,
             ))
           ],
