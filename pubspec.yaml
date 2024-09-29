@@ -1,5 +1,5 @@
 name: movies_app
-description: "A upcoming Flutter project."
+description: "A new Flutter project."
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
@@ -15,23 +15,12 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  google_fonts: ^6.2.1
-  carousel_slider: ^5.0.0
-  flutter_bloc: ^8.1.6
-  connectivity_plus: ^6.0.5
-  http: ^1.0.0
-  dartz: ^0.10.1
-  get_it: ^7.7.0
-  injectable: ^2.3.4
-  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_native_splash: ^2.4.1
   flutter_lints: ^4.0.0
-  build_runner: ^2.4.12
-  injectable_generator: ^2.4.4
 
 flutter:
 
